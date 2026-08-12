@@ -2,9 +2,19 @@ package org.example;
 
 abstract class Money {
     protected int amount;
+    private String currency;
 
-    static Dollar dollar(int amount) {
-        return new Dollar(amount);
+    static Money dollar(int amount) {
+        return new Dollar(amount, "USD");
+    }
+
+    static Money franc(int amount) {
+        return new Franc(amount, "CHF");
+    }
+
+    Money(int amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
     }
 
     public boolean equals(Object object) {
@@ -13,7 +23,8 @@ abstract class Money {
     }
 
     abstract Money times(int multiplier);
-    static Money franc(int amount) {
-        return new Franc(amount);
+
+    String currency() {
+        return currency;
     }
 }
